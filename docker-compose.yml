@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ubuntu-stress:
+    container_name: OdontoCompnay-Stress
+    image: ubuntu:latest
+    # Mantém o container rodando
+    tty: true
+    stdin_open: true
+    # Reinicia o container automaticamente
+    restart: unless-stopped
+    # Define limites de recursos (opcional)
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    # Volumes para persistir dados (opcional)
+    volumes:
+      - ./data:/app/data
+    # Variáveis de ambiente (opcional)
+    environment:
+      - TZ=America/Sao_Paulo
